@@ -743,7 +743,121 @@ about.component.html
 
 # Service
 
+Service in Angular is a way to organize and share code or functionality that can be used across different parts of an Angular application. It helps in keeping the code modular, reusable, and makes it easier to manage dependencies and communication between different components.
 
+Characteristics : 
+
+1. **Singleton Pattern:** By default, Angular services are singleton objects, meaning there is only one instance of a service created and shared throughout the application. This ensures that data and functionality are consistent across different parts of the application.
+2. **Dependency Injection (DI):** Angular's dependency injection system is used to provide services to components and other services. This makes it easy to manage and inject dependencies, promoting loose coupling between different parts of the application.
+3. **Encapsulation of Business Logic:** Services are commonly used to encapsulate business logic, data manipulation, and other functionalities that are not directly related to the user interface. This separation of concerns helps in keeping components clean and focused on the presentation layer.
+4. **Reusability:** Since services are standalone entities, they can be reused across multiple components or even in different parts of the application. This promotes a modular and scalable code structure.
+5. **Communication Between Components:** Services can act as intermediaries for communication between different components. They can store and manage shared data, and components can interact with the service to exchange information.
+6. **HTTP Services:** Services are often used to encapsulate HTTP communication with a server. This helps in centralizing API calls, error handling, and other related functionality.
+
+#### Make Service : 
+
+1. Command : `ng g service services/<service name> userdata`
+2. userdata.service.ts :
+
+   ```ts
+   import {Injectable} from '@angular/core';
+
+   @Injectable({
+     providedIn: 'root'
+   })
+
+   export class UserdataService {
+     constructor() { }
+     users () {
+        return [
+          {
+   	 name: 'Babu rao',
+   	 age: 40
+          },
+   	{
+   	  name: 'Raju bhai',
+   	  age: 29
+   	}
+        ]
+     }
+   }
+   ```
+3. app.component.ts
+
+   ```ts
+   // Import the service
+   import {UserdataService} from './services/userdata.service'
+   ....
+   export class AppComponent {
+      users: any;
+      constructor(private userdata:UserdataService) {
+          console.log("userdata" , userdata.users());
+          this.users = userdata.users();
+      }
+   }
+   ```
+4. app.component.html
+
+   ```html
+   <ul>
+    <li *ngFor="let user of users"> {{user.name + ", " + user.age}}
+    </li>
+   </ul>
+   <app-footer></app-footer>
+   ```
+5. footer.component.html
+
+   ```html
+   <h5>Footer</h5>
+   <ul>
+    <li *ngFor="let user of users"> {{user.name + ", " + user.age}}
+    </li>
+   </ul>
+   ```
+6. footer.component.ts
+
+   ```ts
+   // Import the service
+   import {UserdataService} from './services/userdata.service'
+   ....
+   export class FooterComponent {
+      users: any;
+      constructor(private userdata:UserdataService) {
+          console.log("userdata" , userdata.users());
+          this.users = userdata.users();
+      }
+   }
+   ```
+
+---
+
+# API Call 
+
+1. Flow :` Angular[component -> service -> HTTP Module] -> server`
+2. Make service :
+   a. Create :  `ng g service services/usersData`
+   b. users-data.service.ts :
+
+   ```ts
+   import {HttpClient} from '@angular/common/http';
+   export class UsersDataService {
+     constructor(private http:HttpClient) {
+       users() {
+         return this.http.get('http://localhost:3000/users');
+       }
+     }
+   }
+   ```
+3. Add Http module in **app.module.ts** :
+
+   ```ts
+   import {HttpClientModule} from '@angular/common/http'
+   @NgModule({
+     imports: [...., HttpClientModule],
+   })
+   ```
+4. Call GET api
+5. Call POST api
 
 ---
 
