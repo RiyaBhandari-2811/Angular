@@ -468,7 +468,9 @@ import {ReactiveFormsModule} from '@angular/forms'
 ```html
 <form [formGroup]="loginFormm" (ngSubmit)="loginUser()">
   <input type="text" placeholder="Enter Name" formControlName="usernamee" />
-  <span *ngIf="Username && Username.invalid && Username.touched">This Field is required to be filled</span>
+  <span *ngIf="Username && Username.invalid && Username.touched"
+    >This Field is required to be filled</span
+  >
   <input
     type="password"
     placeholder="Enter Password"
@@ -668,38 +670,37 @@ transform(value, ...args) {
 app-routing.module.ts
 
 ```js
-
-import {AboutComponent} from './about/about.component';
-import {HomeComponent} from './home/home.component';
-import {UserComponent} from './user/user.component';
-import {NotFoundComponent} from './notFound/notFound.component';
+import { AboutComponent } from "./about/about.component";
+import { HomeComponent } from "./home/home.component";
+import { UserComponent } from "./user/user.component";
+import { NotFoundComponent } from "./notFound/notFound.component";
 
 const routes: Routes = [
   {
     component: AboutComponent,
-     path: 'about',
-     children: [
-       {
-	  path: 'company',
-          component: CompanyComponent,
-       },
-       {
-	  path: 'career',
-          component: CareerComponent,
-       },
-     ]
+    path: "about",
+    children: [
+      {
+        path: "company",
+        component: CompanyComponent,
+      },
+      {
+        path: "career",
+        component: CareerComponent,
+      },
+    ],
   },
   {
-    path: 'user/:id',
-    component: UserComponent
-  },
-  { 
-    path : '', 
-    component: HomeComponent
+    path: "user/:id",
+    component: UserComponent,
   },
   {
-    path: '**',
-    component: NotFoundComponent
+    path: "",
+    component: HomeComponent,
+  },
+  {
+    path: "**",
+    component: NotFoundComponent,
   },
 ];
 ```
@@ -707,7 +708,7 @@ const routes: Routes = [
 .html
 
 ```html
-<h1> Hello </h1>
+<h1>Hello</h1>
 <a routerLink="home">Home</a>
 <a routerLink="about">About</a>
 <a routerLink="user">User</a>
@@ -736,7 +737,6 @@ about.component.html
 <a routerLink="company"> Company </a>
 <a routerLink="career"> Career </a>
 <router-outlet></router-outlet>
-
 ```
 
 ---
@@ -745,7 +745,7 @@ about.component.html
 
 Service in Angular is a way to organize and share code or functionality that can be used across different parts of an Angular application. It helps in keeping the code modular, reusable, and makes it easier to manage dependencies and communication between different components.
 
-Characteristics : 
+Characteristics :
 
 1. **Singleton Pattern:** By default, Angular services are singleton objects, meaning there is only one instance of a service created and shared throughout the application. This ensures that data and functionality are consistent across different parts of the application.
 2. **Dependency Injection (DI):** Angular's dependency injection system is used to provide services to components and other services. This makes it easy to manage and inject dependencies, promoting loose coupling between different parts of the application.
@@ -754,31 +754,30 @@ Characteristics :
 5. **Communication Between Components:** Services can act as intermediaries for communication between different components. They can store and manage shared data, and components can interact with the service to exchange information.
 6. **HTTP Services:** Services are often used to encapsulate HTTP communication with a server. This helps in centralizing API calls, error handling, and other related functionality.
 
-#### Make Service : 
+#### Make Service :
 
 1. Command : `ng g service services/<service name> userdata`
 2. userdata.service.ts :
 
    ```ts
-   import {Injectable} from '@angular/core';
+   import { Injectable } from "@angular/core";
 
    @Injectable({
-     providedIn: 'root'
+     providedIn: "root",
    })
-
    export class UserdataService {
-     constructor() { }
-     users () {
-        return [
-          {
-   	 name: 'Babu rao',
-   	 age: 40
-          },
-   	{
-   	  name: 'Raju bhai',
-   	  age: 29
-   	}
-        ]
+     constructor() {}
+     users() {
+       return [
+         {
+           name: "Babu rao",
+           age: 40,
+         },
+         {
+           name: "Raju bhai",
+           age: 29,
+         },
+       ];
      }
    }
    ```
@@ -800,8 +799,7 @@ Characteristics :
 
    ```html
    <ul>
-    <li *ngFor="let user of users"> {{user.name + ", " + user.age}}
-    </li>
+     <li *ngFor="let user of users">{{user.name + ", " + user.age}}</li>
    </ul>
    <app-footer></app-footer>
    ```
@@ -810,8 +808,7 @@ Characteristics :
    ```html
    <h5>Footer</h5>
    <ul>
-    <li *ngFor="let user of users"> {{user.name + ", " + user.age}}
-    </li>
+     <li *ngFor="let user of users">{{user.name + ", " + user.age}}</li>
    </ul>
    ```
 6. footer.component.ts
@@ -831,11 +828,13 @@ Characteristics :
 
 ---
 
-# API Call 
+# API Call
+
+##### GET : 
 
 1. Flow :` Angular[component -> service -> HTTP Module] -> server`
 2. Make service :
-   a. Create :  `ng g service services/usersData`
+   a. Create : `ng g service services/usersData`
    b. users-data.service.ts :
 
    ```ts
@@ -856,11 +855,74 @@ Characteristics :
      imports: [...., HttpClientModule],
    })
    ```
-4. Call GET api
-5. Call POST api
+4. app.component.ts :
+
+   ```ts
+   import {UsersDataService} from './services/users-data.service.ts';
+
+   export class AppComponent {
+     users:any  ;
+     constructor(private userData:UsersDataService) {
+       userData.users().subscribe((data) => this.users = data; )
+    }
+   }
+   ```
+5. app.component.html :
+
+   ```html
+   <ul>
+      <li *ngFor="let user of users">{{user.name}}</li>
+   </ul>
+   ```
+
+##### POST : 
+
+1. Make Form :
+
+   app.module.ts :
+
+   ```ts
+   import {FormsModule} from '@angular/forms';
+   @NgModule(
+   {
+     imports : [...,FormsModule],
+   }
+   )
+   ```
+
+   app.component.html :
+
+   ```html
+   <h1>Form</h1>
+   <form #newUserForm="ngForm" (ngSubmit)="getUserFormData(newUserForm.value)">
+   <input ngModel type='text' name='name' placeholder="Enter Name" />
+   <input ngModel type='password' name="password' placeholder="Enter Password"/>
+   <button>Add User</button>
+   </form>
+   ```
+2. Get Form data, Call post api
+   app.component.ts
+
+   ```ts
+   getUserFormData(data: any) { 
+      this.userData.saveUsers(data).subscribe((res) => console.log(res));
+   }
+   ```
+3. Make Service
+
+   users-data.service.ts :
+
+```ts
+import {HttpClient} from '@angular/common/http';
+export class UsersDataService {
+  constructor(private http:HttpClient) {
+    saveUsers(data: any) {
+      return this.http.post('http://localhost:3000/users', data);
+    }
+  }
+}
+```
 
 ---
 
-
-
-Templete ref variable
+Remaning topics : Templete ref variable, lazy loading
