@@ -1217,27 +1217,43 @@ In Angular, `@ViewChildren` is a decorator used for view queries. Similar to `@V
 
 
 ---
-
 # Lazy Loading
 
 Lazy loading in Angular is a technique used to load modules on-demand, rather than loading the entire application at once. This can significantly improve the initial loading time of your Angular application, as only the essential modules are loaded initially, and additional modules are loaded as needed.
 
-Code : 
+Code : `For Modules`
 1. app-routing.module.ts : 
 ``` ts
 const appRoutes: Routes = [
   {path: 'users' , loadChildren: () => import ('./user.module').then(m => m.UserModule) }
 ]
 ```
-2. 
+2. User.module.ts : 
+```ts 
+const routes: Routes = [
+  {
+    path: '' // Remove the path
+  }
+]
+```
+
+Code : ``
 
 --- 
 
-# Just In Time (JIT)
+# Just In Time (JIT) Compiler & Ahead Of Time (AOT) Compiler
+
+#### JIT : 
+In JIT Compilation, the Angular code is compiled in the user's browser at runtime. THis means the compilation happens just before the application runs on the user's machine.
+
+#### AOT :
+In AOT Compilation, the Angular code is compiled during the build process, before the application is deployed to the user's browser. The compiled code is then shipped, reducing the need for compilation in the user's browser.
+
+Code : ``` ng build --prod ```
 
 ---
-# Ahead Of Time Compiler (AOT)
+# 
 
 ---
 
-Remaning topics : Templete ref variable, lazy loading,  @ContentChild/@ContentChildren, Content Projection with ng-content
+Remaning topics : Templete ref variable,  @ContentChild/@ContentChildren, Content Projection with ng-content
