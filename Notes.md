@@ -665,7 +665,7 @@ transform(value, ...args) {
 
 # Routing
 
-#### Static, Dynamic, Wild card(404), Nested/Child Routing
+#### Static, Dynamic, Wild card(404), Nested/Child Routing, active class
 
 app-routing.module.ts
 
@@ -709,7 +709,8 @@ const routes: Routes = [
 
 ```html
 <h1>Hello</h1>
-<a routerLink="home">Home</a>
+// If you make use of href then you page will get refresh every time you click on a link. means req to server and reponse cycle. we avoid it via routerLink. 
+<a routerLink="/" routerLinkActive="classNameToAddWhenAcitve" [routerLinkActiveOptions]="{exact: true}">Home</a>
 <a routerLink="about">About</a>
 <a routerLink="user">User</a>
 <a routerLink="user/1">Riya</a>
@@ -719,14 +720,22 @@ const routes: Routes = [
 
 user.component.ts
 
-```js
+```ts
 import {ActivatedRoute} from '@angular/router';
 
 export class UserComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
+  // You can do this : but here once component is loaded it won't load again and change in data will not get reflected.
   ngOnInit(): void {
-   console.log("user id is : ", this.route.snapshot.paramMap.get('id));
- }
+   console.log("user id is : ", this.route.snapshot.params['id']);
+  }
+
+  // But this is recommended : We over come above problem by listing to the params all 			  the time so whenever there is change in params we're listing to it.
+  ngOnInit(): void {
+     this.route.params.subscribe((data: Params) => {
+	 console.log("user id is : ", data['id']);
+     })
+  }
 }
 ```
 
@@ -737,6 +746,84 @@ about.component.html
 <a routerLink="company"> Company </a>
 <a routerLink="career"> Career </a>
 <router-outlet></router-outlet>
+```
+
+#### Passing & Retrieving Query Params(?) & Fragments(#) to/from the URL
+
+###### Passing : 
+
+1. HTML :
+
+```html
+<a 
+[routerLink]="['/users', 1, 'riya]" 
+[queryParams]="{page: 1, search: 'riya'}" 
+[fragment]="'load'"
+>Link</a>
+// URL : localhost:4200/users/1/riya?page=1&search=riya#load
+```
+
+2. Component :
+
+```ts
+getDetails () {
+   this.router.navigate(['/users', 2, 'babuRao'], 
+   {
+     queryParams: {page: 1, search: 'babuRao'}, 
+     fragment: "load",
+  })
+}
+```
+
+###### Retrieving : 
+
+app.component.ts
+
+```ts
+ngOnInit(): void {
+  // Way 1 : 
+     this.route.snapshot.queryParams
+     this.route.snapshot.fragment
+  // Way 2 : 
+      this.route.queryParams.subscribe(data => {
+          console.log("data ", data);
+     })
+      this.route.fragment.subscribe(data => {
+          console.log("data ", data);
+     })
+
+}
+```
+
+#### Query Params Handling
+
+app.module.ts
+
+```ts
+const appRoutes: Routes = [
+{
+  path : 'users',
+  component: UsersComponent, 
+  children: [
+   {path: ':/id/:name/edit', component: EditUserComponent}
+  ],
+}
+]
+```
+
+app.component.ts
+
+```ts
+onUserEdit () {
+  // Without queryParams
+    this.router.navigate(['/users', this.user.id, this.user.name, 'edit']); 
+    // O/P : URL : localhost:4200/users/1/riya/edit
+  // With queryParams
+      this.router.navigate(['/users', this.user.id, this.user.name, 'edit'], {
+           queryParamsHandling: 'preserve', // We have two options here preserve/merge
+      }); 
+    // O/P : URL : localhost:4200/users/1/riya/edit?page=1&search=riya#load
+}
 ```
 
 ---
