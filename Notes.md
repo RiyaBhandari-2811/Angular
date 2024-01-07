@@ -9,16 +9,16 @@ ng serve
 
 ---
 
-### Interpolation
+### Interpolation/ Data Binding
 
 Interpolation is the way by which you can pass a data from component.ts -> component.html file . One-way of data binding .
 
-|   With   | component.ts                                                                                                                     | component.html |
-| :------: | -------------------------------------------------------------------------------------------------------------------------------- | :------------: |
-| variable | export class AppComponent {<br />      appName = 'xyz' ;<br />      `name = "Riya B."`<br />}                                    |   {{ name }}   |
-| function | export class AppComponent {<br />       appName = 'xyz';<br />       `test () {...}`<br />}                                      |  {{ test() }}  |
-|  object  | export class AppComponent {<br />       appName = 'xyz'<br />       `obj = {`<br />           ` age : 20`<br />     `  }`<br />} | {{ obj.age }}  |
-|  array   | export class AppComponent {<br />    appName = 'xyz' ;<br />    `arr = [ 1, 2, 3]`<br />}                                        |  {{ arr[0] }}  |
+|   With   | component.ts                                                                                                                                             | component.html |
+| :------: | -------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------: |
+| variable | export class AppComponent {<br />      appName = 'xyz' ;<br />      `name = "Riya B."`<br />}                                                    |   {{ name }}   |
+| function | export class AppComponent {<br />       appName = 'xyz';<br />       `test () {...}`<br />}                                                    |  {{ test() }}  |
+|  object  | export class AppComponent {<br />       appName = 'xyz'<br />       `obj = {`<br />           ` age : 20`<br />     `  }`<br />} | {{ obj.age }} |
+|  array  | export class AppComponent {<br />    appName = 'xyz' ;<br />    `arr = [ 1, 2, 3]`<br />}                                                          |  {{ arr[0] }}  |
 
 ---
 
@@ -76,7 +76,7 @@ Step 1 : Add following code in component.ts
 ```typescript
 // Case 1
 export class AppComponent {
-  title = 'CodeSandbox';
+  title = "CodeSandbox";
   getName(name) {
     alert(name);
   }
@@ -84,8 +84,8 @@ export class AppComponent {
 
 // Case 2 : using variable which are declare in .ts
 export class AppComponent {
-  title = 'CodeSandbox';
-  username = 'Riyo';
+  title = "CodeSandbox";
+  username = "Riyo";
   getName(name) {
     alert(name);
   }
@@ -106,7 +106,7 @@ case 2 :
 
 ---
 
-### Events in Angular
+### Events in Angular / Event Binding
 
 - Click
 - KeyUp
@@ -119,15 +119,15 @@ case 2 :
 .ts :
 
 ```typescript
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  title = 'CodeSandbox';
+  title = "CodeSandbox";
   myEvent(evt) {
     console.log(evt);
   }
@@ -190,7 +190,7 @@ export class AppComponent {
 
 ---
 
-### Get Value from Text Box
+### Get Value from Text Box/ Send data from event binding ($event)
 
 - Get value with value change : using keyup event
 
@@ -198,8 +198,8 @@ export class AppComponent {
 
 ```typescript
 export class AppComponent {
-  title = 'CodeSandbox';
-  currVal = '';
+  title = "CodeSandbox";
+  currVal = "";
   getVal(val) {
     console.log(val);
     this.currVal = val;
@@ -227,8 +227,8 @@ export class AppComponent {
 
 ```typescript
 export class AppComponent {
-  title = 'CodeSandbox';
-  currVal = '';
+  title = "CodeSandbox";
+  currVal = "";
   sendVal(val) {
     alert(val);
     currVal = val;
@@ -269,7 +269,8 @@ when you need to concatenate strings, you must use interpolation instead of prop
 
 1. If Statement : You can have ng-template for if also.
 
-   ***
+   ---
+
 
    ```html
    <div *ngIf="condition">Content to render when condition is true.</div>
@@ -283,7 +284,6 @@ when you need to concatenate strings, you must use interpolation instead of prop
      <h1 *ngIf="show=='yes'">If Show is true then i'm visible</h1>
    </div>
    ```
-
 2. If Else
 
    ```html
@@ -310,7 +310,6 @@ when you need to concatenate strings, you must use interpolation instead of prop
      >
    </div>
    ```
-
 3. If then else :
 
    ```html
@@ -322,14 +321,13 @@ when you need to concatenate strings, you must use interpolation instead of prop
      >Content to render when condition is false.</ng-template
    >
    ```
-
 4. Property Binding with If :
 
    ```html
    <ng-template [ngIf]="show=='red'"><h1>Red block</h1></ng-template>
    ```
 
-   ***
+   ---
 
    ### Switch Case
 
@@ -352,27 +350,27 @@ when you need to concatenate strings, you must use interpolation instead of prop
 .ts
 
 ```typescript
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  title = 'CodeSandbox';
-  data = ['Riya', 'Ria', 'Riha', 'Riyo'];
+  title = "CodeSandbox";
+  data = ["Riya", "Ria", "Riha", "Riyo"];
   dataOfObj = [
     {
-      name: 'Riya',
+      name: "Riya",
       age: 21,
     },
     {
-      name: 'Ria',
+      name: "Ria",
       age: 22,
     },
     {
-      name: 'Riyo',
+      name: "Riyo",
       age: 24,
     },
   ];
@@ -427,7 +425,7 @@ import {FormsModule} from '@angular/forms';
 
 ```typescript
 export class AppComponent {
-  title = 'CodeSandbox';
+  title = "CodeSandbox";
   getUserValue(value) {
     console.warn(value);
   }
@@ -545,37 +543,37 @@ Install : `ng add @angular/material`
 
 ---
 
-# Pass Data Parent To Child Component
+# Pass Data Parent To Child Component - @Input() decorator
 
 Parent :
 
-| .ts                                                                                                                     | .html                                                                         |
-| :---------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------- |
+| .ts                                                                                                                                   | .html                                                                           |
+| :------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------ |
 | export class AppComponent {<br />      title = 'parent' ;<br />     ` data = "Riya" ; `<br />     ` dataObj = {`<br />} | `<app-child [jonamesayaccesskarogayusakaname] = "data/dataObj" ></app-child>` |
 
 Child : object print nahi hota uski keys print hoti hai .
 
-| .ts                                                                                                                                                                                  | .html                                                                                        |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| .ts                                                                                                                                                                                        | .html                                                                                            |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
 | import { Component , ... ,`Input` } from '@angular/core' ; <br />export class ChildComponent implements OnInit {<br />`@Input() jonamesayaccesskarogayusakaname`<br />.......<br />} | `<h4>{{` `jonamesayaccesskarogayusakaname /jonamesayaccesskarogayusakaname.name/age }}</h4>` |
 
 # Reusable Component in angular
 
 app component (parent) :
 
-| .ts                                                          | .html                                   |
-| ------------------------------------------------------------ | --------------------------------------- |
+| .ts                                                             | .html                                     |
+| --------------------------------------------------------------- | ----------------------------------------- |
 | export class AppComponent {<br /> ` userDetails = [{`<br />} | `<ul *ngFor="let user of userDetails">` |
 
 user-details component (child) :
 
-| .ts                                                                                                                                    | .html                               |
-| -------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| .ts                                                                                                                                       | .html                                 |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
 | export class UserDetailsComponent implements OnInit {<br /> `@Input() item:{name: string, age:number}={name : '', number : 0};`<br />} | `<li>{{item.name , item.age}}</li>` |
 
 ---
 
-# Passing Data from Child To Parent
+# Passing Data from Child To Parent - @Output decorator
 
 ```html
 1. Make a child component 2. Use child comp in parent comp 3. send function from
@@ -584,19 +582,19 @@ parent comp 4. call function in child comp 5. get data in parent comp
 
 parent :
 
-| .ts                                                                                               | .html                                                            |
-| ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| .ts                                                                                                 | .html                                                              |
+| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
 | export class AppComponent {<br /> updateData(item:string){<br /> console.log(item)<br />\}<br />} | `<app-child (updateDataEvent)="updateData($event)"></app-child>` |
 
 child :
 
-| .ts                                                                                                                                                                          | .html                                                                                                            |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| .ts                                                                                                                                                                              | .html                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | import {Output, EventEmitter} from '@angular/cli';<br />export class ChildComponent implements OnInit {<br />` @OutPut updateDataEvent = new EventEmitter<string>();`<br />} | `<input type="text" #userip />`<br />`<button (click)="updateDataEvent.emit(userip.value)">update data</button>` |
 
 ---
 
-# Two way binding - Update and display data at same time
+# Two way binding [(ngModel)] - Update and display data at same time
 
 app.module.ts : import formModule
 
@@ -672,36 +670,36 @@ transform(value, ...args) {
 app-routing.module.ts
 
 ```js
-import { AboutComponent } from './about/about.component';
-import { HomeComponent } from './home/home.component';
-import { UserComponent } from './user/user.component';
-import { NotFoundComponent } from './notFound/notFound.component';
+import { AboutComponent } from "./about/about.component";
+import { HomeComponent } from "./home/home.component";
+import { UserComponent } from "./user/user.component";
+import { NotFoundComponent } from "./notFound/notFound.component";
 
 const routes: Routes = [
   {
     component: AboutComponent,
-    path: 'about',
+    path: "about",
     children: [
       {
-        path: 'company',
+        path: "company",
         component: CompanyComponent,
       },
       {
-        path: 'career',
+        path: "career",
         component: CareerComponent,
       },
     ],
   },
   {
-    path: 'user/:id',
+    path: "user/:id",
     component: UserComponent,
   },
   {
-    path: '',
+    path: "",
     component: HomeComponent,
   },
   {
-    path: '**',
+    path: "**",
     component: NotFoundComponent,
   },
 ];
@@ -762,34 +760,37 @@ Characteristics :
 2. userdata.service.ts :
 
    ```ts
-   import { Injectable } from '@angular/core';
+   import { Injectable } from "@angular/core";
 
    @Injectable({
-     providedIn: 'root',
+     providedIn: "root",
    })
    export class UserdataService {
      constructor() {}
      users() {
        return [
          {
-           name: 'Babu rao',
+           name: "Babu rao",
            age: 40,
          },
          {
-           name: 'Raju bhai',
+           name: "Raju bhai",
            age: 29,
          },
        ];
      }
    }
    ```
-
 3. app.component.ts
 
    ```ts
    // Import the service
    import {UserdataService} from './services/userdata.service'
    ....
+   @Component({
+    ...
+    providers: [UserdataService],
+   })
    export class AppComponent {
       users: any;
       constructor(private userdata:UserdataService) {
@@ -798,7 +799,6 @@ Characteristics :
       }
    }
    ```
-
 4. app.component.html
 
    ```html
@@ -807,7 +807,6 @@ Characteristics :
    </ul>
    <app-footer></app-footer>
    ```
-
 5. footer.component.html
 
    ```html
@@ -816,13 +815,17 @@ Characteristics :
      <li *ngFor="let user of users">{{user.name + ", " + user.age}}</li>
    </ul>
    ```
-
 6. footer.component.ts
 
    ```ts
    // Import the service
    import {UserdataService} from './services/userdata.service'
    ....
+   @Component({
+    ...
+    providers: [UserdataService],
+   })
+
    export class FooterComponent {
       users: any;
       constructor(private userdata:UserdataService) {
@@ -831,6 +834,197 @@ Characteristics :
       }
    }
    ```
+
+#### Hierarchical Injection of the Services & Sharing of Instances
+
+app module -> Highest level -> same instance will be shared to all components and also services.
+
+app component.ts -> Sec Highest level -> same instance will be shared to all child components but services will have different instance.
+
+child component -> each one will be having different instances.
+
+```ts
+// Just remove the provide from @component from child component. Just keep it in app component.
+```
+
+#### Injecting Services into another Services. Usage of @Injectable decorator.
+
+In Angular, dependency injection is a core concept that allows you to inject services into other services, components, or directives. This helps in creating modular and maintainable code by promoting the reusability of services and managing their dependencies.
+
+Here's a brief explanation of injecting services into other services in Angular:
+
+1. **Service Definition:**
+   First, you need to define the services you want to inject. For example, let's create a simple `LoggerService`:
+
+   ```typescript
+   // logger.service.ts
+   import { Injectable } from '@angular/core';
+
+   // When we don't have @Component decorator we have to make use of @Injectable decorator to inject the dependency.
+   @Injectable({
+     providedIn: 'root',
+   })
+   export class LoggerService {
+     log(message: string): void {
+       console.log(message);
+     }
+   }
+   ```
+2. **Injecting Service into Another Service:**
+   Now, let's create another service, say `DataService`, and inject the `LoggerService` into it:
+
+   ```typescript
+   // data.service.ts
+   import { Injectable } from '@angular/core';
+   import { LoggerService } from './logger.service';
+
+   @Injectable({
+     providedIn: 'root',
+   })
+   export class DataService {
+     constructor(private logger: LoggerService) {}
+
+     fetchData(): void {
+       this.logger.log('Fetching data...');
+       // Perform data fetching logic here
+     }
+   }
+   ```
+
+   In this example, the `DataService` depends on the `LoggerService`, and Angular's dependency injection system automatically provides an instance of `LoggerService` when creating an instance of `DataService`.
+3. **Usage in a Component:**
+   You can then use these services in your components:
+
+   ```typescript
+   // app.component.ts
+   import { Component } from '@angular/core';
+   import { DataService } from './data.service';
+
+   @Component({
+     selector: 'app-root',
+     template: `
+       <button (click)="fetchData()">Fetch Data</button>
+     `,
+   })
+   export class AppComponent {
+     constructor(private dataService: DataService) {}
+
+     fetchData(): void {
+       this.dataService.fetchData();
+     }
+   }
+   ```
+
+   Here, the `AppComponent` injects the `DataService` and calls the `fetchData` method, which, in turn, logs a message using the `LoggerService`.
+4. **ProvidedIn Property:**
+   The `providedIn` property within the `@Injectable` decorator specifies the injector for the service. It can take one of the following values:
+
+* `'root'`: The service is provided globally in the root injector. It becomes a singleton available throughout the application.
+* A specific module: The service is provided at the module level, and a new instance is created for each module that injects it.
+
+By following this approach, you create services that are loosely coupled and easily maintainable, as each service can focus on its specific functionality, and dependencies are managed through Angular's dependency injection system.
+
+#### Making the cross component communication using the services by event emitter.
+
+Angular services can be used for cross-component communication by employing an `EventEmitter`. The idea is to create a service that acts as a mediator, allowing components to communicate through it. Here's a step-by-step guide:
+
+1. **Create a Service:**
+   Create a service that will be responsible for handling the communication. This service will expose an `EventEmitter` that components can subscribe to and emit events.
+
+   ```typescript
+   // communication.service.ts
+   import { Injectable, EventEmitter } from '@angular/core';
+
+   @Injectable({
+     providedIn: 'root',
+   })
+   export class CommunicationService {
+     // Create an EventEmitter
+     public messageEmitter: EventEmitter<string> = new EventEmitter<string>();
+
+     // Method to broadcast a message
+     sendMessage(message: string): void {
+       this.messageEmitter.emit(message);
+     }
+   }
+   ```
+2. **Inject the Service into Components:**
+   Inject the `CommunicationService` into the components that need to communicate.
+
+   ```typescript
+   // component-a.component.ts
+   import { Component } from '@angular/core';
+   import { CommunicationService } from './communication.service';
+
+   @Component({
+     selector: 'app-component-a',
+     template: `
+       <div>
+         <p>{{ receivedMessage }}</p>
+       </div>
+     `,
+   })
+   export class ComponentA {
+     receivedMessage = '';
+
+     constructor(private communicationService: CommunicationService) {
+       // Subscribe to the messageEmitter in the service
+       this.communicationService.messageEmitter.subscribe((message) => {
+         this.receivedMessage = message;
+       });
+     }
+   }
+   ```
+
+   ```typescript
+   // component-b.component.ts
+   import { Component } from '@angular/core';
+   import { CommunicationService } from './communication.service';
+
+   @Component({
+     selector: 'app-component-b',
+     template: `
+       <div>
+         <input [(ngModel)]="message" placeholder="Type a message" />
+         <button (click)="sendMessage()">Send Message</button>
+       </div>
+     `,
+   })
+   export class ComponentB {
+     message = '';
+
+     constructor(private communicationService: CommunicationService) {}
+
+     sendMessage(): void {
+       // Call the sendMessage method of the service
+       this.communicationService.sendMessage(this.message);
+     }
+   }
+   ```
+3. **Register the Service in AppModule:**
+   Ensure that the service is registered in the `providers` array of the `AppModule`.
+
+   ```typescript
+   // app.module.ts
+   import { NgModule } from '@angular/core';
+   import { BrowserModule } from '@angular/platform-browser';
+   import { FormsModule } from '@angular/forms';
+
+   import { AppComponent } from './app.component';
+   import { ComponentA } from './component-a.component';
+   import { ComponentB } from './component-b.component';
+   import { CommunicationService } from './communication.service';
+
+   @NgModule({
+     declarations: [AppComponent, ComponentA, ComponentB],
+     imports: [BrowserModule, FormsModule],
+     providers: [CommunicationService], // Register the service here
+     bootstrap: [AppComponent],
+   })
+   export class AppModule {}
+   ```
+
+Now, when you enter a message in `ComponentB` and click "Send Message," `ComponentA` will receive and display that message through the `CommunicationService`. This is a simple example of cross-component communication using Angular services and `EventEmitter`.
 
 ---
 
@@ -853,7 +1047,6 @@ Characteristics :
      }
    }
    ```
-
 3. Add Http module in **app.module.ts** :
 
    ```ts
@@ -862,7 +1055,6 @@ Characteristics :
      imports: [...., HttpClientModule],
    })
    ```
-
 4. app.component.ts :
 
    ```ts
@@ -875,7 +1067,6 @@ Characteristics :
     }
    }
    ```
-
 5. app.component.html :
 
    ```html
@@ -910,7 +1101,6 @@ Characteristics :
      <button>Add User</button>
    </form>
    ```
-
 2. Get Form data, Call post api
    app.component.ts
 
@@ -919,7 +1109,6 @@ Characteristics :
       this.userData.saveUsers(data).subscribe((res) => console.log(res));
    }
    ```
-
 3. Make Service
 
    users-data.service.ts :
@@ -962,16 +1151,16 @@ Code : we'll simulate fetching user data from an API and transforming the data u
 1. DataService
 
 ```ts
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class DataService {
-  private apiUrl = 'https://jsonplaceholder.typicode.com/users';
+  private apiUrl = "https://jsonplaceholder.typicode.com/users";
 
   constructor(private http: HttpClient) {}
 
@@ -984,11 +1173,11 @@ export class DataService {
 2. app.component.ts
 
 ```ts
-import { Component, OnInit } from '@angular/core';
-import { DataService } from './data.service';
+import { Component, OnInit } from "@angular/core";
+import { DataService } from "./data.service";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   template: '<div *ngFor="let user of users">{{ user.name }}</div>',
 })
 export class AppComponent implements OnInit {
@@ -1001,16 +1190,16 @@ export class AppComponent implements OnInit {
     const userObserver = {
       next: (data) => {
         // Handling emitted data
-        console.log('Received data:', data);
+        console.log("Received data:", data);
         this.users = data; // Update component property
       },
       error: (error) => {
         // Handling errors
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       },
       complete: () => {
         // Handling completion (optional)
-        console.log('Data retrieval complete.');
+        console.log("Data retrieval complete.");
       },
     };
 
@@ -1059,7 +1248,7 @@ subject.next(Math.random());
 code : Using Ajax whose default behaviour is observable.
 
 ```ts
-const data = ajax('https://jsonplaceholder.typicode.com/users');
+const data = ajax("https://jsonplaceholder.typicode.com/users");
 // Normal observable
 data.subscribe((d) => console.log(d));
 data.subscribe((d) => console.log(d));
@@ -1095,20 +1284,20 @@ Share data between non-relational component. Meaning we can easily pass data fro
 ```ts
 // we are putting $ just as Naming Convention that the variable is the observable.
 const $msgs = new ReplaySubject();
-$msgs.next('Hello 1');
-$msgs.next('Hello 2');
+$msgs.next("Hello 1");
+$msgs.next("Hello 2");
 
 $msgs.subscribe((msg) => console.log(`User1 : ${msg}`)); // It will hold all the value no matter how many there are.
 
 // If you just want some N last no. of values - we make use of bufferValue
 const $msgs = new ReplaySubject(2); // Here 2 means only hold the last 2 values
-$msgs.next('Hello 1');
-$msgs.next('Hello 2');
-$msgs.next('Hello 3');
-$msgs.next('Hello 4');
+$msgs.next("Hello 1");
+$msgs.next("Hello 2");
+$msgs.next("Hello 3");
+$msgs.next("Hello 4");
 
 $msgs.subscribe((msg) => console.log(`User1 : ${msg}`));
-$msgs.next('Hello 5');
+$msgs.next("Hello 5");
 
 /* O/P : 
 Hello 3
@@ -1126,13 +1315,13 @@ Hello 5
 
 ```ts
 const asyncSub = new AsyncSubject();
-asyncSub.next('Val 1');
-asyncSub.next('Val 2');
-asyncSub.next('Val 3');
+asyncSub.next("Val 1");
+asyncSub.next("Val 2");
+asyncSub.next("Val 3");
 asyncSub.subscribe((d) => console.log(d)); // Val 3 : last emitted value before the complete method
 asyncSub.complete(); // 3
-asyncSub.next('Val 4');
-asyncSub.next('Val 5');
+asyncSub.next("Val 4");
+asyncSub.next("Val 5");
 asyncSub.complete(); // Still the Value is 3, coz async work only for single value
 
 asyncSub.subscribe((d) => console.log(d)); // Val 3 : last emitted value before the complete method
@@ -1186,7 +1375,6 @@ Here's a breakdown of the metadata properties associated with `@ViewChild` in An
    ```
 
    - In this example, `MyComponent` is the type of the directive or component being queried.
-
 2. **read:**
 
    - The `read` property is optional and allows you to specify a different token from the queried elements. Tokens are objects that are used to identify and retrieve dependencies in Angular. By default, `@ViewChild` uses the type specified in the `selector` property as the token.
@@ -1196,7 +1384,6 @@ Here's a breakdown of the metadata properties associated with `@ViewChild` in An
    ```
 
    - In this example, `ElementRef` is specified as the token to read a reference to the native element of the queried template reference variable.
-
 3. **static:**
 
    - The `static` property is a boolean that determines when the query should be resolved. If set to `true`, the query is resolved at compile time, which means before change detection runs. If set to `false` or not provided, the query is resolved at runtime, which means after the `ngAfterViewInit` lifecycle hook.
@@ -1215,45 +1402,53 @@ In Angular, `@ViewChildren` is a decorator used for view queries. Similar to `@V
 
 # @ContentChild/@ContentChildren
 
-
 ---
+
 # Lazy Loading
 
 Lazy loading in Angular is a technique used to load modules on-demand, rather than loading the entire application at once. This can significantly improve the initial loading time of your Angular application, as only the essential modules are loaded initially, and additional modules are loaded as needed.
 
 Code : `For Modules`
-1. app-routing.module.ts : 
-``` ts
+
+1. app-routing.module.ts :
+
+```ts
 const appRoutes: Routes = [
-  {path: 'users' , loadChildren: () => import ('./user.module').then(m => m.UserModule) }
-]
+  {
+    path: "users",
+    loadChildren: () => import("./user.module").then((m) => m.UserModule),
+  },
+];
 ```
-2. User.module.ts : 
-```ts 
+
+2. User.module.ts :
+
+```ts
 const routes: Routes = [
   {
-    path: '' // Remove the path
-  }
-]
+    path: "", // Remove the path
+  },
+];
 ```
 
 Code : ``
 
---- 
+---
 
 # Just In Time (JIT) Compiler & Ahead Of Time (AOT) Compiler
 
-#### JIT : 
+#### JIT :
+
 In JIT Compilation, the Angular code is compiled in the user's browser at runtime. THis means the compilation happens just before the application runs on the user's machine.
 
 #### AOT :
+
 In AOT Compilation, the Angular code is compiled during the build process, before the application is deployed to the user's browser. The compiled code is then shipped, reducing the need for compilation in the user's browser.
 
-Code : ``` ng build --prod ```
-
----
-# 
+Code : `ng build --prod`
 
 ---
 
-Remaning topics : Templete ref variable,  @ContentChild/@ContentChildren, Content Projection with ng-content
+---
+
+Remaning topics : Templete ref variable, @ContentChild/@ContentChildren, Content Projection with ng-content
