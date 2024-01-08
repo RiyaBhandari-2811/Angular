@@ -13,12 +13,12 @@ ng serve
 
 Interpolation is the way by which you can pass a data from component.ts -> component.html file . One-way of data binding .
 
-|   With   | component.ts                                                                                                                                             | component.html |
-| :------: | -------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------: |
-| variable | export class AppComponent {<br />      appName = 'xyz' ;<br />      `name = "Riya B."`<br />}                                                    |   {{ name }}   |
-| function | export class AppComponent {<br />       appName = 'xyz';<br />       `test () {...}`<br />}                                                    |  {{ test() }}  |
-|  object  | export class AppComponent {<br />       appName = 'xyz'<br />       `obj = {`<br />           ` age : 20`<br />     `  }`<br />} | {{ obj.age }} |
-|  array  | export class AppComponent {<br />    appName = 'xyz' ;<br />    `arr = [ 1, 2, 3]`<br />}                                                          |  {{ arr[0] }}  |
+|   With   | component.ts                                                                                                                     | component.html |
+| :------: | -------------------------------------------------------------------------------------------------------------------------------- | :------------: |
+| variable | export class AppComponent {<br />      appName = 'xyz' ;<br />      `name = "Riya B."`<br />}                                    |   {{ name }}   |
+| function | export class AppComponent {<br />       appName = 'xyz';<br />       `test () {...}`<br />}                                      |  {{ test() }}  |
+|  object  | export class AppComponent {<br />       appName = 'xyz'<br />       `obj = {`<br />           ` age : 20`<br />     `  }`<br />} | {{ obj.age }}  |
+|  array   | export class AppComponent {<br />    appName = 'xyz' ;<br />    `arr = [ 1, 2, 3]`<br />}                                        |  {{ arr[0] }}  |
 
 ---
 
@@ -76,7 +76,7 @@ Step 1 : Add following code in component.ts
 ```typescript
 // Case 1
 export class AppComponent {
-  title = "CodeSandbox";
+  title = 'CodeSandbox';
   getName(name) {
     alert(name);
   }
@@ -84,8 +84,8 @@ export class AppComponent {
 
 // Case 2 : using variable which are declare in .ts
 export class AppComponent {
-  title = "CodeSandbox";
-  username = "Riyo";
+  title = 'CodeSandbox';
+  username = 'Riyo';
   getName(name) {
     alert(name);
   }
@@ -119,15 +119,15 @@ case 2 :
 .ts :
 
 ```typescript
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = "CodeSandbox";
+  title = 'CodeSandbox';
   myEvent(evt) {
     console.log(evt);
   }
@@ -198,8 +198,8 @@ export class AppComponent {
 
 ```typescript
 export class AppComponent {
-  title = "CodeSandbox";
-  currVal = "";
+  title = 'CodeSandbox';
+  currVal = '';
   getVal(val) {
     console.log(val);
     this.currVal = val;
@@ -227,8 +227,8 @@ export class AppComponent {
 
 ```typescript
 export class AppComponent {
-  title = "CodeSandbox";
-  currVal = "";
+  title = 'CodeSandbox';
+  currVal = '';
   sendVal(val) {
     alert(val);
     currVal = val;
@@ -269,8 +269,7 @@ when you need to concatenate strings, you must use interpolation instead of prop
 
 1. If Statement : You can have ng-template for if also.
 
-   ---
-
+   ***
 
    ```html
    <div *ngIf="condition">Content to render when condition is true.</div>
@@ -284,6 +283,7 @@ when you need to concatenate strings, you must use interpolation instead of prop
      <h1 *ngIf="show=='yes'">If Show is true then i'm visible</h1>
    </div>
    ```
+
 2. If Else
 
    ```html
@@ -310,6 +310,7 @@ when you need to concatenate strings, you must use interpolation instead of prop
      >
    </div>
    ```
+
 3. If then else :
 
    ```html
@@ -321,13 +322,14 @@ when you need to concatenate strings, you must use interpolation instead of prop
      >Content to render when condition is false.</ng-template
    >
    ```
+
 4. Property Binding with If :
 
    ```html
    <ng-template [ngIf]="show=='red'"><h1>Red block</h1></ng-template>
    ```
 
-   ---
+   ***
 
    ### Switch Case
 
@@ -350,27 +352,27 @@ when you need to concatenate strings, you must use interpolation instead of prop
 .ts
 
 ```typescript
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = "CodeSandbox";
-  data = ["Riya", "Ria", "Riha", "Riyo"];
+  title = 'CodeSandbox';
+  data = ['Riya', 'Ria', 'Riha', 'Riyo'];
   dataOfObj = [
     {
-      name: "Riya",
+      name: 'Riya',
       age: 21,
     },
     {
-      name: "Ria",
+      name: 'Ria',
       age: 22,
     },
     {
-      name: "Riyo",
+      name: 'Riyo',
       age: 24,
     },
   ];
@@ -425,7 +427,7 @@ import {FormsModule} from '@angular/forms';
 
 ```typescript
 export class AppComponent {
-  title = "CodeSandbox";
+  title = 'CodeSandbox';
   getUserValue(value) {
     console.warn(value);
   }
@@ -547,28 +549,28 @@ Install : `ng add @angular/material`
 
 Parent :
 
-| .ts                                                                                                                                   | .html                                                                           |
-| :------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------ |
+| .ts                                                                                                                     | .html                                                                         |
+| :---------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------- |
 | export class AppComponent {<br />      title = 'parent' ;<br />     ` data = "Riya" ; `<br />     ` dataObj = {`<br />} | `<app-child [jonamesayaccesskarogayusakaname] = "data/dataObj" ></app-child>` |
 
 Child : object print nahi hota uski keys print hoti hai .
 
-| .ts                                                                                                                                                                                        | .html                                                                                            |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| .ts                                                                                                                                                                                  | .html                                                                                        |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | import { Component , ... ,`Input` } from '@angular/core' ; <br />export class ChildComponent implements OnInit {<br />`@Input() jonamesayaccesskarogayusakaname`<br />.......<br />} | `<h4>{{` `jonamesayaccesskarogayusakaname /jonamesayaccesskarogayusakaname.name/age }}</h4>` |
 
 # Reusable Component in angular
 
 app component (parent) :
 
-| .ts                                                             | .html                                     |
-| --------------------------------------------------------------- | ----------------------------------------- |
+| .ts                                                          | .html                                   |
+| ------------------------------------------------------------ | --------------------------------------- |
 | export class AppComponent {<br /> ` userDetails = [{`<br />} | `<ul *ngFor="let user of userDetails">` |
 
 user-details component (child) :
 
-| .ts                                                                                                                                       | .html                                 |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| .ts                                                                                                                                    | .html                               |
+| -------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | export class UserDetailsComponent implements OnInit {<br /> `@Input() item:{name: string, age:number}={name : '', number : 0};`<br />} | `<li>{{item.name , item.age}}</li>` |
 
 ---
@@ -582,14 +584,14 @@ parent comp 4. call function in child comp 5. get data in parent comp
 
 parent :
 
-| .ts                                                                                                 | .html                                                              |
-| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| .ts                                                                                               | .html                                                            |
+| ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | export class AppComponent {<br /> updateData(item:string){<br /> console.log(item)<br />\}<br />} | `<app-child (updateDataEvent)="updateData($event)"></app-child>` |
 
 child :
 
-| .ts                                                                                                                                                                              | .html                                                                                                                |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| .ts                                                                                                                                                                          | .html                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | import {Output, EventEmitter} from '@angular/cli';<br />export class ChildComponent implements OnInit {<br />` @OutPut updateDataEvent = new EventEmitter<string>();`<br />} | `<input type="text" #userip />`<br />`<button (click)="updateDataEvent.emit(userip.value)">update data</button>` |
 
 ---
@@ -670,36 +672,36 @@ transform(value, ...args) {
 app-routing.module.ts
 
 ```js
-import { AboutComponent } from "./about/about.component";
-import { HomeComponent } from "./home/home.component";
-import { UserComponent } from "./user/user.component";
-import { NotFoundComponent } from "./notFound/notFound.component";
+import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
+import { NotFoundComponent } from './notFound/notFound.component';
 
 const routes: Routes = [
   {
     component: AboutComponent,
-    path: "about",
+    path: 'about',
     children: [
       {
-        path: "company",
+        path: 'company',
         component: CompanyComponent,
       },
       {
-        path: "career",
+        path: 'career',
         component: CareerComponent,
       },
     ],
   },
   {
-    path: "user/:id",
+    path: 'user/:id',
     component: UserComponent,
   },
   {
-    path: "",
+    path: '',
     component: HomeComponent,
   },
   {
-    path: "**",
+    path: '**',
     component: NotFoundComponent,
   },
 ];
@@ -709,8 +711,14 @@ const routes: Routes = [
 
 ```html
 <h1>Hello</h1>
-// If you make use of href then you page will get refresh every time you click on a link. means req to server and reponse cycle. we avoid it via routerLink. 
-<a routerLink="/" routerLinkActive="classNameToAddWhenAcitve" [routerLinkActiveOptions]="{exact: true}">Home</a>
+// If you make use of href then you page will get refresh every time you click
+on a link. means req to server and reponse cycle. we avoid it via routerLink.
+<a
+  routerLink="/"
+  routerLinkActive="classNameToAddWhenAcitve"
+  [routerLinkActiveOptions]="{exact: true}"
+  >Home</a
+>
 <a routerLink="about">About</a>
 <a routerLink="user">User</a>
 <a routerLink="user/1">Riya</a>
@@ -721,20 +729,20 @@ const routes: Routes = [
 user.component.ts
 
 ```ts
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 export class UserComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
   // You can do this : but here once component is loaded it won't load again and change in data will not get reflected.
   ngOnInit(): void {
-   console.log("user id is : ", this.route.snapshot.params['id']);
+    console.log('user id is : ', this.route.snapshot.params['id']);
   }
 
   // But this is recommended : We over come above problem by listing to the params all 			  the time so whenever there is change in params we're listing to it.
   ngOnInit(): void {
-     this.route.params.subscribe((data: Params) => {
-	 console.log("user id is : ", data['id']);
-     })
+    this.route.params.subscribe((data: Params) => {
+      console.log('user id is : ', data['id']);
+    });
   }
 }
 ```
@@ -750,16 +758,17 @@ about.component.html
 
 #### Passing & Retrieving Query Params(?) & Fragments(#) to/from the URL
 
-###### Passing : 
+###### Passing :
 
 1. HTML :
 
 ```html
-<a 
-[routerLink]="['/users', 1, 'riya]" 
-[queryParams]="{page: 1, search: 'riya'}" 
-[fragment]="'load'"
->Link</a>
+<a
+  [routerLink]="['/users', 1, 'riya]"
+  [queryParams]="{page: 1, search: 'riya'}"
+  [fragment]="'load'"
+  >Link</a
+>
 // URL : localhost:4200/users/1/riya?page=1&search=riya#load
 ```
 
@@ -767,24 +776,24 @@ about.component.html
 
 ```ts
 getDetails () {
-   this.router.navigate(['/users', 2, 'babuRao'], 
+   this.router.navigate(['/users', 2, 'babuRao'],
    {
-     queryParams: {page: 1, search: 'babuRao'}, 
+     queryParams: {page: 1, search: 'babuRao'},
      fragment: "load",
   })
 }
 ```
 
-###### Retrieving : 
+###### Retrieving :
 
 app.component.ts
 
 ```ts
 ngOnInit(): void {
-  // Way 1 : 
+  // Way 1 :
      this.route.snapshot.queryParams
      this.route.snapshot.fragment
-  // Way 2 : 
+  // Way 2 :
       this.route.queryParams.subscribe(data => {
           console.log("data ", data);
      })
@@ -801,14 +810,12 @@ app.module.ts
 
 ```ts
 const appRoutes: Routes = [
-{
-  path : 'users',
-  component: UsersComponent, 
-  children: [
-   {path: ':/id/:name/edit', component: EditUserComponent}
-  ],
-}
-]
+  {
+    path: 'users',
+    component: UsersComponent,
+    children: [{ path: ':/id/:name/edit', component: EditUserComponent }],
+  },
+];
 ```
 
 app.component.ts
@@ -816,16 +823,183 @@ app.component.ts
 ```ts
 onUserEdit () {
   // Without queryParams
-    this.router.navigate(['/users', this.user.id, this.user.name, 'edit']); 
+    this.router.navigate(['/users', this.user.id, this.user.name, 'edit']);
     // O/P : URL : localhost:4200/users/1/riya/edit
   // With queryParams
       this.router.navigate(['/users', this.user.id, this.user.name, 'edit'], {
            queryParamsHandling: 'preserve', // We have two options here preserve/merge
-      }); 
+      });
     // O/P : URL : localhost:4200/users/1/riya/edit?page=1&search=riya#load
 }
 ```
 
+---
+
+# Routing Guards
+
+In Angular, routing guards are mechanisms that allow you to control the navigation flow in your application. They are used to protect routes, ensuring that certain conditions are met before allowing a user to navigate to a particular route.
+
+3 Types :
+
+- canActivate -> Both for parent and child
+- canActivateChild -> Only child
+- canDeactivate ->
+
+##### canActivate
+
+The `CanActivate` interface is used to determine if a route can be activated. It is responsible for deciding whether a user is allowed to navigate to a specific route. This guard is commonly used for implementing authentication checks.
+
+Code : auth-guard.service.ts
+
+```ts
+// auth-guard.service.ts
+import { CanActivate } from '@angular/router';
+export class AuthGuard implements CanActivate {
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean | Promise<boolean> | Observable<boolean> {
+    let isUserLoggedIn = true;
+    if (isUserLoggedIn) {
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+}
+
+// app-routing.module.ts / app-routes.ts
+const appRoutes: Routes = [
+  {
+    path: 'users',
+    component: UserComponent,
+    canActivate: [AuthGuard],
+  },
+];
+```
+
+##### canActivateChild
+
+Similar to `CanActivate`, the `CanActivateChild` interface is used for determining if child routes can be activated. It's applied at the parent route level to guard all its child routes.
+
+```ts
+// auth-guard.service.ts
+import { CanActivateChild } from '@angular/router';
+
+export class AuthGuard implements CanActivateChild {
+  canActivateChild(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean | Promise<boolean> | Observable<boolean> {
+    let isUserLoggedIn = true;
+    if (isUserLoggedIn) {
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+}
+
+// app-routing.module.ts / app-routes.ts
+const appRoutes: Routes = [
+  {
+    path: 'users',
+    component: UserComponent,
+    canActivateChild: [AuthGuard], // Now this Route Guard is for child only and not for parent
+    children: [{ path: ':id/:name/edit', component: EditUserComponent }],
+  },
+];
+```
+
+##### canDeactivate
+
+The `CanDeactivate` interface is used to determine if a route can be deactivated. It is often used to confirm with the user before leaving a page, for example, to prevent data loss in form changes, exit popup.
+
+```ts
+// deactivate-guard.service.ts
+import { CanDeactivate } from '@angular/router';
+
+export interface IDeactivaeGuard {
+  canExit: () => boolean | Promise<boolean> | Observable<boolean>;
+}
+
+export class DeactivateGuard implements CanDeactivate<IDeactivaeGuard> {
+  canDeactivate(
+    component: IDeactivaeGuard,
+    route: ActivatedRouteSnapshot,
+    currentState: RouterStateSnapshot,
+    nextState: RouterStateSnapshot
+  ): boolean | Promise<boolean> | Observable<boolean> {
+    return component.canExit();
+  }
+}
+
+// edit-user.component.ts
+export class EditUserComponent implements OnInit, IDeactivaeGuard {
+  canExit() {
+    if(confirm('Are you sure you want to Exit?')){
+      return true;
+    }
+    return false;
+  }
+}
+
+// app-routing.module.ts / app-routes.ts
+const appRoutes: Routes = [
+  {
+    path: 'users',
+    component: UserComponent,
+    canDeactivate: [DeactivateGuard],
+    children: [{ path: ':id/:name/edit', component: EditUserComponent, canDeactivate: [DeactivateGuard] }],
+  },
+];
+```
+---
+
+# Resolve Guard
+
+Angular's `Resolve Guard` is used to fetch data before a component is activated. It allows you to resolve asynchronous data dependencies and ensure that the data is available before the component is rendered. This can be particularly useful when you need to fetch data from a server or perform some asynchronous operations before displaying the component.
+
+```ts
+// user-resolve.service.ts
+import {Resolve} from '@angular/router';
+
+interface User {
+  id: string;
+  name: string;
+}
+export class UserResolveService implements Resolve<User> {
+  resolve(route: ActivatedRoutedSnapshot, state: RouterStateSnapshot): User | Promise<User> | Observable<User> {
+    return {
+      name: 'Riya',
+      email: 'riyab@gmail.com'
+    }
+  }
+}
+
+// app-routing.module.ts / app-routes.ts
+const appRoutes: Routes = [
+  {
+    path: 'users',
+    component: UserComponent,
+    canDeactivate: [DeactivateGuard],
+    children: [
+      { path: ':id/:name/edit', component: EditUserComponent, canDeactivate: [DeactivateGuard] 
+      }
+    ],
+    resolve: {user: UserResolveService} // user will hold the return datat from the UserResolveService and this user will be forwarded to the EditUserComponent
+  },
+];
+
+// edit-user.component.ts:
+export class EditUserComponent implements OnInit {
+  ngOnInit(): void {
+    this.route.data.subscribe(data => {
+      console.log(data.user);
+    })
+  }
+}
+```
 ---
 
 # Service
@@ -847,27 +1021,28 @@ Characteristics :
 2. userdata.service.ts :
 
    ```ts
-   import { Injectable } from "@angular/core";
+   import { Injectable } from '@angular/core';
 
    @Injectable({
-     providedIn: "root",
+     providedIn: 'root',
    })
    export class UserdataService {
      constructor() {}
      users() {
        return [
          {
-           name: "Babu rao",
+           name: 'Babu rao',
            age: 40,
          },
          {
-           name: "Raju bhai",
+           name: 'Raju bhai',
            age: 29,
          },
        ];
      }
    }
    ```
+
 3. app.component.ts
 
    ```ts
@@ -886,6 +1061,7 @@ Characteristics :
       }
    }
    ```
+
 4. app.component.html
 
    ```html
@@ -894,6 +1070,7 @@ Characteristics :
    </ul>
    <app-footer></app-footer>
    ```
+
 5. footer.component.html
 
    ```html
@@ -902,6 +1079,7 @@ Characteristics :
      <li *ngFor="let user of users">{{user.name + ", " + user.age}}</li>
    </ul>
    ```
+
 6. footer.component.ts
 
    ```ts
@@ -957,6 +1135,7 @@ Here's a brief explanation of injecting services into other services in Angular:
      }
    }
    ```
+
 2. **Injecting Service into Another Service:**
    Now, let's create another service, say `DataService`, and inject the `LoggerService` into it:
 
@@ -979,6 +1158,7 @@ Here's a brief explanation of injecting services into other services in Angular:
    ```
 
    In this example, the `DataService` depends on the `LoggerService`, and Angular's dependency injection system automatically provides an instance of `LoggerService` when creating an instance of `DataService`.
+
 3. **Usage in a Component:**
    You can then use these services in your components:
 
@@ -989,9 +1169,7 @@ Here's a brief explanation of injecting services into other services in Angular:
 
    @Component({
      selector: 'app-root',
-     template: `
-       <button (click)="fetchData()">Fetch Data</button>
-     `,
+     template: ` <button (click)="fetchData()">Fetch Data</button> `,
    })
    export class AppComponent {
      constructor(private dataService: DataService) {}
@@ -1003,11 +1181,12 @@ Here's a brief explanation of injecting services into other services in Angular:
    ```
 
    Here, the `AppComponent` injects the `DataService` and calls the `fetchData` method, which, in turn, logs a message using the `LoggerService`.
+
 4. **ProvidedIn Property:**
    The `providedIn` property within the `@Injectable` decorator specifies the injector for the service. It can take one of the following values:
 
-* `'root'`: The service is provided globally in the root injector. It becomes a singleton available throughout the application.
-* A specific module: The service is provided at the module level, and a new instance is created for each module that injects it.
+- `'root'`: The service is provided globally in the root injector. It becomes a singleton available throughout the application.
+- A specific module: The service is provided at the module level, and a new instance is created for each module that injects it.
 
 By following this approach, you create services that are loosely coupled and easily maintainable, as each service can focus on its specific functionality, and dependencies are managed through Angular's dependency injection system.
 
@@ -1035,6 +1214,7 @@ Angular services can be used for cross-component communication by employing an `
      }
    }
    ```
+
 2. **Inject the Service into Components:**
    Inject the `CommunicationService` into the components that need to communicate.
 
@@ -1088,6 +1268,7 @@ Angular services can be used for cross-component communication by employing an `
      }
    }
    ```
+
 3. **Register the Service in AppModule:**
    Ensure that the service is registered in the `providers` array of the `AppModule`.
 
@@ -1134,6 +1315,7 @@ Now, when you enter a message in `ComponentB` and click "Send Message," `Compone
      }
    }
    ```
+
 3. Add Http module in **app.module.ts** :
 
    ```ts
@@ -1142,6 +1324,7 @@ Now, when you enter a message in `ComponentB` and click "Send Message," `Compone
      imports: [...., HttpClientModule],
    })
    ```
+
 4. app.component.ts :
 
    ```ts
@@ -1154,6 +1337,7 @@ Now, when you enter a message in `ComponentB` and click "Send Message," `Compone
     }
    }
    ```
+
 5. app.component.html :
 
    ```html
@@ -1188,6 +1372,7 @@ Now, when you enter a message in `ComponentB` and click "Send Message," `Compone
      <button>Add User</button>
    </form>
    ```
+
 2. Get Form data, Call post api
    app.component.ts
 
@@ -1196,6 +1381,7 @@ Now, when you enter a message in `ComponentB` and click "Send Message," `Compone
       this.userData.saveUsers(data).subscribe((res) => console.log(res));
    }
    ```
+
 3. Make Service
 
    users-data.service.ts :
@@ -1238,16 +1424,16 @@ Code : we'll simulate fetching user data from an API and transforming the data u
 1. DataService
 
 ```ts
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class DataService {
-  private apiUrl = "https://jsonplaceholder.typicode.com/users";
+  private apiUrl = 'https://jsonplaceholder.typicode.com/users';
 
   constructor(private http: HttpClient) {}
 
@@ -1260,11 +1446,11 @@ export class DataService {
 2. app.component.ts
 
 ```ts
-import { Component, OnInit } from "@angular/core";
-import { DataService } from "./data.service";
+import { Component, OnInit } from '@angular/core';
+import { DataService } from './data.service';
 
 @Component({
-  selector: "app-root",
+  selector: 'app-root',
   template: '<div *ngFor="let user of users">{{ user.name }}</div>',
 })
 export class AppComponent implements OnInit {
@@ -1277,16 +1463,16 @@ export class AppComponent implements OnInit {
     const userObserver = {
       next: (data) => {
         // Handling emitted data
-        console.log("Received data:", data);
+        console.log('Received data:', data);
         this.users = data; // Update component property
       },
       error: (error) => {
         // Handling errors
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       },
       complete: () => {
         // Handling completion (optional)
-        console.log("Data retrieval complete.");
+        console.log('Data retrieval complete.');
       },
     };
 
@@ -1335,7 +1521,7 @@ subject.next(Math.random());
 code : Using Ajax whose default behaviour is observable.
 
 ```ts
-const data = ajax("https://jsonplaceholder.typicode.com/users");
+const data = ajax('https://jsonplaceholder.typicode.com/users');
 // Normal observable
 data.subscribe((d) => console.log(d));
 data.subscribe((d) => console.log(d));
@@ -1371,20 +1557,20 @@ Share data between non-relational component. Meaning we can easily pass data fro
 ```ts
 // we are putting $ just as Naming Convention that the variable is the observable.
 const $msgs = new ReplaySubject();
-$msgs.next("Hello 1");
-$msgs.next("Hello 2");
+$msgs.next('Hello 1');
+$msgs.next('Hello 2');
 
 $msgs.subscribe((msg) => console.log(`User1 : ${msg}`)); // It will hold all the value no matter how many there are.
 
 // If you just want some N last no. of values - we make use of bufferValue
 const $msgs = new ReplaySubject(2); // Here 2 means only hold the last 2 values
-$msgs.next("Hello 1");
-$msgs.next("Hello 2");
-$msgs.next("Hello 3");
-$msgs.next("Hello 4");
+$msgs.next('Hello 1');
+$msgs.next('Hello 2');
+$msgs.next('Hello 3');
+$msgs.next('Hello 4');
 
 $msgs.subscribe((msg) => console.log(`User1 : ${msg}`));
-$msgs.next("Hello 5");
+$msgs.next('Hello 5');
 
 /* O/P : 
 Hello 3
@@ -1402,13 +1588,13 @@ Hello 5
 
 ```ts
 const asyncSub = new AsyncSubject();
-asyncSub.next("Val 1");
-asyncSub.next("Val 2");
-asyncSub.next("Val 3");
+asyncSub.next('Val 1');
+asyncSub.next('Val 2');
+asyncSub.next('Val 3');
 asyncSub.subscribe((d) => console.log(d)); // Val 3 : last emitted value before the complete method
 asyncSub.complete(); // 3
-asyncSub.next("Val 4");
-asyncSub.next("Val 5");
+asyncSub.next('Val 4');
+asyncSub.next('Val 5');
 asyncSub.complete(); // Still the Value is 3, coz async work only for single value
 
 asyncSub.subscribe((d) => console.log(d)); // Val 3 : last emitted value before the complete method
@@ -1462,6 +1648,7 @@ Here's a breakdown of the metadata properties associated with `@ViewChild` in An
    ```
 
    - In this example, `MyComponent` is the type of the directive or component being queried.
+
 2. **read:**
 
    - The `read` property is optional and allows you to specify a different token from the queried elements. Tokens are objects that are used to identify and retrieve dependencies in Angular. By default, `@ViewChild` uses the type specified in the `selector` property as the token.
@@ -1471,6 +1658,7 @@ Here's a breakdown of the metadata properties associated with `@ViewChild` in An
    ```
 
    - In this example, `ElementRef` is specified as the token to read a reference to the native element of the queried template reference variable.
+
 3. **static:**
 
    - The `static` property is a boolean that determines when the query should be resolved. If set to `true`, the query is resolved at compile time, which means before change detection runs. If set to `false` or not provided, the query is resolved at runtime, which means after the `ngAfterViewInit` lifecycle hook.
@@ -1502,8 +1690,8 @@ Code : `For Modules`
 ```ts
 const appRoutes: Routes = [
   {
-    path: "users",
-    loadChildren: () => import("./user.module").then((m) => m.UserModule),
+    path: 'users',
+    loadChildren: () => import('./user.module').then((m) => m.UserModule),
   },
 ];
 ```
@@ -1513,7 +1701,7 @@ const appRoutes: Routes = [
 ```ts
 const routes: Routes = [
   {
-    path: "", // Remove the path
+    path: '', // Remove the path
   },
 ];
 ```
