@@ -937,7 +937,7 @@ export class DeactivateGuard implements CanDeactivate<IDeactivaeGuard> {
 // edit-user.component.ts
 export class EditUserComponent implements OnInit, IDeactivaeGuard {
   canExit() {
-    if(confirm('Are you sure you want to Exit?')){
+    if (confirm('Are you sure you want to Exit?')) {
       return true;
     }
     return false;
@@ -950,10 +950,17 @@ const appRoutes: Routes = [
     path: 'users',
     component: UserComponent,
     canDeactivate: [DeactivateGuard],
-    children: [{ path: ':id/:name/edit', component: EditUserComponent, canDeactivate: [DeactivateGuard] }],
+    children: [
+      {
+        path: ':id/:name/edit',
+        component: EditUserComponent,
+        canDeactivate: [DeactivateGuard],
+      },
+    ],
   },
 ];
 ```
+
 ---
 
 # Resolve Guard
@@ -962,18 +969,21 @@ Angular's `Resolve Guard` is used to fetch data before a component is activated.
 
 ```ts
 // user-resolve.service.ts
-import {Resolve} from '@angular/router';
+import { Resolve } from '@angular/router';
 
 interface User {
   id: string;
   name: string;
 }
 export class UserResolveService implements Resolve<User> {
-  resolve(route: ActivatedRoutedSnapshot, state: RouterStateSnapshot): User | Promise<User> | Observable<User> {
+  resolve(
+    route: ActivatedRoutedSnapshot,
+    state: RouterStateSnapshot
+  ): User | Promise<User> | Observable<User> {
     return {
       name: 'Riya',
-      email: 'riyab@gmail.com'
-    }
+      email: 'riyab@gmail.com',
+    };
   }
 }
 
@@ -984,22 +994,26 @@ const appRoutes: Routes = [
     component: UserComponent,
     canDeactivate: [DeactivateGuard],
     children: [
-      { path: ':id/:name/edit', component: EditUserComponent, canDeactivate: [DeactivateGuard] 
-      }
+      {
+        path: ':id/:name/edit',
+        component: EditUserComponent,
+        canDeactivate: [DeactivateGuard],
+      },
     ],
-    resolve: {user: UserResolveService} // user will hold the return datat from the UserResolveService and this user will be forwarded to the EditUserComponent
+    resolve: { user: UserResolveService }, // user will hold the return datat from the UserResolveService and this user will be forwarded to the EditUserComponent
   },
 ];
 
 // edit-user.component.ts:
 export class EditUserComponent implements OnInit {
   ngOnInit(): void {
-    this.route.data.subscribe(data => {
+    this.route.data.subscribe((data) => {
       console.log(data.user);
-    })
+    });
   }
 }
 ```
+
 ---
 
 # Service
@@ -1296,7 +1310,7 @@ Now, when you enter a message in `ComponentB` and click "Send Message," `Compone
 
 ---
 
-# API Call
+# HTTP Request
 
 ##### GET :
 
@@ -1367,8 +1381,8 @@ Now, when you enter a message in `ComponentB` and click "Send Message," `Compone
    <h1>Form</h1>
    <form #newUserForm="ngForm" (ngSubmit)="getUserFormData(newUserForm.value)">
      <input ngModel type="text" name="name" placeholder="Enter Name" />
-     <input ngModel type='password' name="password' placeholder="Enter
-     Password"/>
+     <input ngModel type='password' name="password' placeholder="Enter Password"
+     />
      <button>Add User</button>
    </form>
    ```
@@ -1384,7 +1398,7 @@ Now, when you enter a message in `ComponentB` and click "Send Message," `Compone
 
 3. Make Service
 
-   users-data.service.ts :
+users-data.service.ts :
 
 ```ts
 import {HttpClient} from '@angular/common/http';
@@ -1397,6 +1411,102 @@ export class UsersDataService {
 }
 ```
 
+##### Delete
+
+```ts
+clearData () {
+  this.http.delete("url").subscribe(res => console.log(res));
+}
+```
+
+##### Send the HTTP Headers
+
+```ts
+http.get('url', {
+  headers: new HttpHeaders({
+    'custom-header': 'riya',
+  }),
+});
+```
+
+##### Adding Query Params for the url using HttpParams
+
+```ts
+http.get('url', {
+  headers: new HttpHeaders({
+    'custom-header': 'riya',
+  }),
+  params: new HttpParams().set('custom', 'helllo'),
+});
+
+// or
+
+let searchParams = new HttpParams();
+searchParams = searchParams.append('custom', 'Hello');
+searchParams = searchParams.append('name', 'Riya');
+
+http.get('url', {
+  params: searchParams,
+});
+```
+---
+
+# HTTP Interceptors
+
+In Angular, HTTP interceptors are a powerful mechanism that allows you to intercept and manipulate HTTP requests and responses globally in your application. Interceptors are commonly used for tasks such as adding headers, logging, error handling, and authentication. They provide a centralized way to handle these concerns without duplicating code across multiple components or services.
+
+code : auth-interceptor.service.ts
+```ts
+import {
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+} from '@angular/common/http';
+
+export class AuthInterceptorService implements HttpInterceptor {
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    let modifiedRequest = req.clone({
+      headers: req.headers.append('auth', 'abc'),
+      params: req.params.append('auth', 'abc'),
+    })
+    return next.handle(modifiedRequest);
+  }
+}
+```
+
+code: app.module.ts
+```ts
+@NgModule({
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
+})
+export class AppModule {}
+```
+
+##### Adding and executing the multiple interceptors in order
+code: app.module.ts
+```ts
+@NgModule({
+  providers: [ // Order Matters
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService, // 1
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoginInterceptorService, // 2
+      multi: true,
+    },
+  ],
+})
+export class AppModule {}
+```
 ---
 
 # RxJs
